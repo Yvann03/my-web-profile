@@ -95,6 +95,16 @@ h3 { font-size: 1.4rem; line-height: 1.3; font-weight: 600; margin: 18px 0 10px;
 .contact > p:not(.eyebrow) { color: var(--muted); }
 .contact .button { margin-top: 8px; }
 footer { display: flex; justify-content: space-between; gap: 24px; padding: 28px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: .875rem; }
+/* Toolkit */
+.toolkit-intro { max-width: 760px; }
+.toolkit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 32px; }
+.toolkit-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+.toolkit-card h3 { margin: 0 0 22px; font-size: 1.15rem; }
+.toolkit-list { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.toolkit-list li { padding: 6px 12px; border: 1px solid var(--border); border-radius: 8px; color: var(--tag-text); font-size: .9rem; }
+@media (max-width: 800px) {
+  .toolkit-grid { grid-template-columns: 1fr; }
+}
 /* Tablet and mobile */
 @media (max-width: 900px) {
   .hero { gap: 36px; grid-template-columns: minmax(0, 1.3fr) minmax(250px, 1fr); }
