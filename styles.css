@@ -145,9 +145,10 @@ footer { display: flex; justify-content: space-between; gap: 24px; padding: 28px
   .reveal-in { animation: enter-up .6s ease-out backwards; }
   .toolkit-card:nth-child(2).reveal-in { animation-delay: .08s; }
   .toolkit-card:nth-child(3).reveal-in { animation-delay: .16s; }
-  .toolkit-card.reveal-in .toolkit-list li {
-    animation: enter-up .4s ease-out backwards;
-    animation-delay: var(--tag-delay, 120ms);
+  .toolkit-list.reveal-in { animation: none; }
+  .toolkit-list.reveal-in li {
+    animation: enter-up .65s ease-out backwards;
+    animation-delay: var(--tag-delay, 0ms);
   }
   .toolkit-card, .project, .profile-card, .theme-toggle {
     transition: translate .25s ease, border-color .25s ease, box-shadow .25s ease;

@@ -1,24 +1,25 @@
 (() => {
   // Content stays visible if JavaScript or observation is unavailable.
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        if (!reducedMotion.matches) entry.target.classList.add('reveal-in');
+        observer.unobserve(entry.target);
+      }
+    }, { threshold: 0.12 });
 
-  const observer = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      if (!reducedMotion.matches) entry.target.classList.add('reveal-in');
-      observer.unobserve(entry.target);
-    }
-  }, { threshold: 0.12 });
+    document.querySelectorAll('.section-heading, .about-copy, .project, .contact')
+      .forEach((element) => observer.observe(element));
 
-  document.querySelectorAll('.section-heading, .about-copy, .toolkit-card, .project, .contact')
-    .forEach((element) => observer.observe(element));
-
-  document.querySelectorAll('.toolkit-list').forEach((list) => {
-    [...list.children].forEach((tag, index) => {
-      tag.style.setProperty('--tag-delay', `${index * 70 + 120}ms`);
+    document.querySelectorAll('.toolkit-list').forEach((list) => {
+      [...list.children].forEach((tag, index) => {
+        tag.style.setProperty('--tag-delay', `${index * 110}ms`);
+      });
+      observer.observe(list);
     });
-  });
+  }
 
   const card = document.querySelector('.profile-card');
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -40,8 +41,8 @@
     const y = Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height - .5) * 2));
     cancelAnimationFrame(frame);
     frame = requestAnimationFrame(() => {
-      card.style.setProperty('--tilt-x', `${-y * 5}deg`);
-      card.style.setProperty('--tilt-y', `${x * 5}deg`);
+      card.style.setProperty('--tilt-x', `${-y * 9}deg`);
+      card.style.setProperty('--tilt-y', `${x * 9}deg`);
       card.classList.add('is-tilting');
       frame = 0;
     });
