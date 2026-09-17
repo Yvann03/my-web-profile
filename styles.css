@@ -67,8 +67,7 @@ h1 { font-size: clamp(2.8rem, 5.2vw, 4.6rem); line-height: 1.08; letter-spacing:
 /* Profile card */
 .profile-card { border: 1px solid var(--card-border); border-radius: 20px; background: linear-gradient(145deg, var(--card-start), var(--surface) 65%); padding: 28px; transform: rotate(2deg); }
 .card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: .75rem; letter-spacing: .08em; color: var(--card-label); }
-.monogram { padding: 28px 0 16px; font-size: 6.5rem; line-height: 1.2; font-weight: 750; letter-spacing: -.09em; }
-.monogram span { color: var(--accent); }
+.profile-photo { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 42%; margin: 24px 0 20px; border-radius: 14px; border: 1px solid var(--card-border); }
 .card-name { font-size: 1.1rem; font-weight: 650; margin-bottom: 0; }
 .card-role { color: var(--muted); font-size: .9rem; }
 .profile-details { margin: 28px 0 0; border-top: 1px solid var(--card-border); padding-top: 18px; font-size: .875rem; }
@@ -126,7 +125,6 @@ footer { display: flex; justify-content: space-between; gap: 24px; padding: 28px
   .hero { grid-template-columns: 1fr; padding: 52px 0 64px; gap: 42px; }
   h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
   .profile-card { transform: none; }
-  .monogram { font-size: 5rem; padding-top: 16px; }
   .about { grid-template-columns: 1fr; gap: 0; }
   .section { padding: 42px 0; }
   .project { padding: 24px; gap: 20px; align-items: flex-start; }
