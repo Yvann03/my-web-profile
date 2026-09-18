@@ -1,19 +1,23 @@
 /* Theme */
 :root {
   color-scheme: dark;
-  --background: #101212;
-  --surface: #191d1b;
+  --background: #0b1325;
+  --surface: #131f30;
   --text: #f0f1eb;
   --muted: #a5ada7;
   --accent: #c5f277;
-  --border: #303731;
+  --border: #2c3c50;
   --button-bg: #c5f277;
   --button-hover: #d6ff97;
-  --card-start: #293322;
-  --card-border: #424e3b;
+  --card-start: #203b43;
+  --card-border: #385966;
   --card-label: #bdc9b6;
   --tag-text: #d2d9ce;
   --project-number: #91a17f;
+  --glow-blue: rgb(51 111 235 / .23);
+  --glow-teal: rgb(16 183 173 / .17);
+  --dot-color: rgb(155 188 224 / .14);
+  --dot-active: rgb(102 221 224 / .65);
 }
 :root[data-theme="light"] {
   color-scheme: light;
@@ -28,15 +32,19 @@
   --card-label: #506245;
   --tag-text: #465740;
   --project-number: #576e45;
+  --glow-blue: rgb(74 138 236 / .12);
+  --glow-teal: rgb(16 183 173 / .1);
+  --dot-color: rgb(37 77 116 / .12);
+  --dot-active: rgb(17 112 126 / .5);
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--background); color: var(--text); font: 1rem/1.7 "Segoe UI", system-ui, sans-serif; }
+body { margin: 0; isolation: isolate; background: var(--background); color: var(--text); font: 1rem/1.7 "Segoe UI", system-ui, sans-serif; }
 a { color: inherit; text-decoration: none; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
 a, .button { transition: color .2s, background .2s, transform .2s; }
 p { margin: 0 0 20px; }
-.wrap { width: min(1180px, 88%); margin: auto; }
+.wrap { position: relative; z-index: 1; width: min(1180px, 88%); margin: auto; }
 .skip-link { position: absolute; left: 20px; top: -100px; padding: 10px 20px; background: var(--accent); color: var(--background); z-index: 10; }
 .skip-link:focus { top: 12px; }
 .accent { color: var(--accent); }
@@ -190,4 +198,39 @@ footer { display: flex; justify-content: space-between; gap: 24px; padding: 28px
   html { scroll-behavior: auto; }
   a, .button { transition: none; }
   .button:hover { transform: none; }
+}
+
+/* Decorative background stays behind the page and never intercepts clicks. */
+.ambient-background { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.ambient-glow { position: absolute; width: min(85vw, 1100px); height: min(90vh, 900px); border-radius: 50%; }
+.glow-blue { top: -22%; left: -24%; background: radial-gradient(ellipse, var(--glow-blue), transparent 70%); }
+.glow-teal { bottom: -22%; right: -24%; background: radial-gradient(ellipse, var(--glow-teal), transparent 70%); }
+.dot-grid, .dot-response { position: absolute; inset: 0; background-size: 30px 30px; }
+.dot-grid { background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1.5px); }
+.dot-response { background-image: radial-gradient(circle, var(--dot-active) 1.6px, transparent 2px); opacity: 0; mask-image: radial-gradient(circle 160px at var(--pointer-x, -300px) var(--pointer-y, -300px), black, transparent); -webkit-mask-image: radial-gradient(circle 160px at var(--pointer-x, -300px) var(--pointer-y, -300px), black, transparent); }
+footer { flex-wrap: wrap; }
+.background-toggle { border: 0; padding: 0; background: transparent; color: var(--muted); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.background-toggle:hover { color: var(--accent); }
+@keyframes drift-blue {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(22vw, 16vh, 0) scale(1.12); }
+}
+@keyframes drift-teal {
+  from { transform: translate3d(0, 0, 0) scale(1.08); }
+  to { transform: translate3d(-20vw, -15vh, 0) scale(.96); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .glow-blue { animation: drift-blue 24s ease-in-out infinite alternate; }
+  .glow-teal { animation: drift-teal 30s ease-in-out infinite alternate; }
+  .dot-response { transition: opacity .35s ease; }
+  .pointer-active .dot-response { opacity: 1; }
+}
+.motion-paused .ambient-glow { animation-play-state: paused; }
+@media (max-width: 680px), (hover: none), (pointer: coarse) {
+  .dot-grid, .dot-response { display: none; }
+  .ambient-glow { width: 120vw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-glow { animation: none; }
+  .dot-response { display: none; }
 }

@@ -9,7 +9,7 @@
   const applyTheme = () => {
     root.dataset.theme = theme;
     document.querySelector('meta[name="theme-color"]').content =
-      theme === 'dark' ? '#101212' : '#f7f9f4';
+      theme === 'dark' ? '#0b1325' : '#f7f9f4';
   };
   applyTheme();
 
