@@ -221,6 +221,17 @@ footer { display: flex; justify-content: space-between; gap: 24px; padding: 28px
 footer { flex-wrap: wrap; }
 .background-toggle { border: 0; padding: 0; background: transparent; color: var(--muted); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
 .background-toggle:hover { color: var(--accent); }
+/* Welcome screen: the full portfolio is revealed by its entrance button. */
+.welcome-screen { display: none; }
+.welcome-pending .header, .welcome-pending .wrap, .welcome-pending .skip-link { display: none; }
+.welcome-pending .welcome-screen { display: grid; place-items: center; position: relative; z-index: 1; min-height: 100svh; padding: 48px 6%; text-align: center; }
+.welcome-content { max-width: 900px; }
+.welcome-content h1 { font-size: clamp(3rem, 9vw, 7rem); margin: 24px 0; }
+.welcome-role { font-size: clamp(1rem, 2.5vw, 1.4rem); color: var(--text); }
+.welcome-description { color: var(--muted); max-width: 460px; margin: 0 auto 32px; }
+.enter-portfolio { border: 0; cursor: pointer; font: inherit; font-weight: 650; }
+.welcome-caption { color: var(--muted); font-size: .875rem; margin-top: 32px; }
+.welcome-pending .ambient-glow { animation-play-state: paused; }
 @keyframes drift-blue {
   from { transform: translate3d(0, 0, 0) scale(1); }
   to { transform: translate3d(22vw, 16vh, 0) scale(1.12); }
