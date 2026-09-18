@@ -232,6 +232,18 @@ footer { flex-wrap: wrap; }
 .enter-portfolio { border: 0; cursor: pointer; font: inherit; font-weight: 650; }
 .welcome-caption { color: var(--muted); font-size: .875rem; margin-top: 32px; }
 .welcome-pending .ambient-glow { animation-play-state: paused; }
+@keyframes portfolio-arrive {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes header-arrive {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .portfolio-entering .wrap { animation: portfolio-arrive .6s cubic-bezier(.2, .7, .3, 1) both; }
+  .portfolio-entering .header { animation: header-arrive .45s ease-out both; }
+}
 @keyframes drift-blue {
   from { transform: translate3d(0, 0, 0) scale(1); }
   to { transform: translate3d(22vw, 16vh, 0) scale(1.12); }
