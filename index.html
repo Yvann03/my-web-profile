@@ -8,10 +8,11 @@
   <title>Clarence Yvan P. Salvahan | Portfolio</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23c5f277'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='sans-serif' font-size='22' fill='%23101212'%3EC%3C/text%3E%3C/svg%3E">
   <script src="theme.js?v=20260919-1"></script>
-  <script src="welcome.js?v=20260919-2"></script>
-  <link rel="stylesheet" href="styles.css?v=20260919-6">
+  <script src="welcome.js?v=20260919-3"></script>
+  <link rel="stylesheet" href="styles.css?v=20260919-7">
 </head>
 <body id="home">
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-fill"></div></div>
   <div class="ambient-background" aria-hidden="true">
     <div class="ambient-glow glow-blue"></div>
     <div class="ambient-glow glow-teal"></div>
@@ -61,7 +62,7 @@
         </div>
         <aside class="profile-card" aria-label="Profile at a glance">
           <div class="card-top"><span>THE PERSON BEHIND THE CODE</span><span aria-hidden="true">↗</span></div>
-          <img class="profile-photo" src="assets/clarence-yvan.jpg" alt="Clarence Yvan P. Salvahan" width="1536" height="2048" fetchpriority="high">
+          <a class="photo-open" href="assets/clarence-yvan.jpg" aria-label="View larger photo of Clarence Yvan P. Salvahan"><img class="profile-photo" src="assets/clarence-yvan.jpg" alt="Clarence Yvan P. Salvahan" width="1536" height="2048" fetchpriority="high"></a>
           <p class="card-name">Clarence Yvan P. Salvahan</p>
           <p class="card-role">Aspiring software developer &amp; vibe-coder</p>
           <dl class="profile-details">
@@ -157,10 +158,16 @@
         </div>
       </section>
     </main>
-    <footer><span>Clarence Yvan P. Salvahan</span><span>Learning. Building. Becoming.</span><button class="background-toggle" type="button" hidden>Pause background</button><a href="#home">Back to top ↑</a></footer>
+    <footer><span>Clarence Yvan P. Salvahan</span><button class="return-welcome" type="button" hidden>Return to welcome</button><button class="background-toggle" type="button" hidden>Pause background</button><a href="#home">Back to top ↑</a></footer>
   </div>
+  <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top" hidden>↑</button>
+  <dialog class="photo-dialog" aria-label="Profile photo of Clarence Yvan P. Salvahan">
+    <button class="photo-close" type="button" autofocus aria-label="Close photo">Close ×</button>
+    <img src="assets/clarence-yvan.jpg" alt="Clarence Yvan P. Salvahan" width="1536" height="2048">
+  </dialog>
   <script src="animations.js?v=20260917-2"></script>
   <script src="background.js?v=20260919-1"></script>
   <script src="interactions.js?v=20260919-2"></script>
+  <script src="extras.js?v=20260919-1"></script>
 </body>
 </html>

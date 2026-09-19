@@ -280,3 +280,19 @@ footer { flex-wrap: wrap; }
   .ambient-glow { animation: none; }
   .dot-response { display: none; }
 }
+
+/* Reading progress and quick navigation. */
+.scroll-progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 12; pointer-events: none; }
+.scroll-progress-fill { width: 100%; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.welcome-pending .scroll-progress, .welcome-pending .back-to-top { display: none; }
+.back-to-top { position: fixed; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); z-index: 6; width: 48px; height: 48px; border: 1px solid var(--border); border-radius: 50%; background: var(--surface); color: var(--accent); font: 1.5rem system-ui, sans-serif; cursor: pointer; box-shadow: 0 4px 18px #0003; }
+.back-to-top:hover { border-color: var(--accent); }
+.return-welcome { background: transparent; border: 0; padding: 0; color: var(--muted); font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; min-height: 44px; align-self: flex-start; }
+.return-welcome:hover { color: var(--accent); }
+.photo-open { display: block; border-radius: 14px; cursor: zoom-in; }
+.photo-dialog { padding: 12px; border: 1px solid var(--border); border-radius: 16px; color: var(--text); background: var(--surface); max-width: min(94vw, 720px); max-height: 92svh; }
+.photo-dialog::backdrop { background: rgb(3 8 18 / .85); backdrop-filter: blur(6px); }
+.photo-dialog img { display: block; width: auto; height: auto; max-width: 100%; max-height: calc(92svh - 84px); object-fit: contain; margin: auto; border-radius: 8px; }
+.photo-close { display: block; margin: 0 0 8px auto; min-height: 44px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); background: var(--background); font: inherit; cursor: pointer; }
+.photo-viewing { overflow: hidden; }
+@media (max-width: 680px) { footer { padding-right: 60px; } }

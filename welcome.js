@@ -8,7 +8,23 @@
       root.classList.remove('welcome-pending');
       return;
     }
+    const returnButton = document.querySelector('.return-welcome');
+    let entranceTimer;
+    if (returnButton) {
+      returnButton.hidden = false;
+      returnButton.addEventListener('click', () => {
+        clearTimeout(entranceTimer);
+        document.querySelector('.welcome-content').getAnimations().forEach((animation) => animation.cancel());
+        root.classList.remove('portfolio-entering');
+        root.classList.add('welcome-pending');
+        button.disabled = false;
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        button.focus({ preventScroll: true });
+        window.dispatchEvent(new Event('resize'));
+      });
+    }
     button.addEventListener('click', async () => {
+      if (button.disabled) return;
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       const welcome = document.querySelector('.welcome-content');
       button.disabled = true;
@@ -39,7 +55,7 @@
       window.scrollTo({ top: 0, behavior: 'instant' });
       // Recalculate the sticky header and active navigation after revealing the page.
       window.dispatchEvent(new Event('resize'));
-      setTimeout(() => root.classList.remove('portfolio-entering'), 800);
-    }, { once: true });
+      entranceTimer = setTimeout(() => root.classList.remove('portfolio-entering'), 800);
+    });
   });
 })();
