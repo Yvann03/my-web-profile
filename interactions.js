@@ -33,6 +33,32 @@
   });
 
   const header = document.querySelector('.header');
+  const menu = document.querySelector('.menu-toggle');
+  const navigation = document.querySelector('#main-navigation');
+  if (menu && navigation) {
+    header.classList.add('nav-ready');
+    menu.hidden = false;
+    function closeMenu() {
+      header.classList.remove('nav-open');
+      menu.setAttribute('aria-expanded', 'false');
+      menu.textContent = 'Menu';
+    }
+    menu.addEventListener('click', () => {
+      const open = menu.getAttribute('aria-expanded') !== 'true';
+      header.classList.toggle('nav-open', open);
+      menu.setAttribute('aria-expanded', String(open));
+      menu.textContent = open ? 'Close' : 'Menu';
+      updateNavigation();
+    });
+    navigation.addEventListener('click', (event) => {
+      if (event.target.closest('a')) { closeMenu(); updateNavigation(); }
+    });
+    header.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
+        closeMenu(); menu.focus(); updateNavigation();
+      }
+    });
+  }
   const links = [...document.querySelectorAll('nav a[href^="#"]')];
   const sections = links.map((link) => document.querySelector(link.getAttribute('href')));
   let frame = 0;
