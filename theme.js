@@ -20,6 +20,7 @@
       button.setAttribute('aria-label', label);
       button.title = label;
       button.querySelector('.theme-icon').textContent = theme === 'dark' ? '☀' : '☾';
+      button.querySelector('.theme-label').textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
     };
     updateButton();
     button.hidden = false;
