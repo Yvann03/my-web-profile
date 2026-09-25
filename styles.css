@@ -89,7 +89,9 @@ summary span { float:right; }
 .toolkit-card h3 { font-size:.85rem; margin-bottom:14px; }
 .toolkit-list { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:8px; }
 .toolkit-list li { display:inline-flex; align-items:center; gap:7px; padding:7px 9px; border:1px solid var(--border); border-radius:7px; font-size:.8rem; max-width:100%; }
-.toolkit-list .ui-icon { width:14px; height:14px; flex-basis:14px; color:var(--accent); }
+.toolkit-list .ui-icon { width:24px; height:24px; flex-basis:24px; color:var(--accent); }
+.tech-logos { display:inline-flex; align-items:center; gap:5px; flex-shrink:0; padding:5px; border-radius:6px; background:#fff; }
+.tech-logos img { display:block; width:24px; height:24px; object-fit:contain; }
 .contact { grid-column:1/-1; }
 .contact-emails { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0; }
 .email-card { display:flex; flex-direction:column; align-items:flex-start; gap:10px; background:var(--soft); border:1px solid var(--border); border-radius:10px; padding:20px; min-width:0; }

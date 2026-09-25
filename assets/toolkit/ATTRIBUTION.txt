@@ -1,0 +1,3 @@
+Toolkit technology logos are from Devicon: https://github.com/devicons/devicon
+Original SVG assets; see LICENSE for the Devicon MIT license.
+Product names and logos belong to their respective owners.
