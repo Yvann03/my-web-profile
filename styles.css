@@ -22,7 +22,7 @@ h3 { font-size:1.25rem; letter-spacing:-.025em; }
 .header { position:fixed; inset:0 auto 0 0; width:232px; z-index:10; background:var(--surface); border-right:1px solid var(--border); overflow-y:auto; }
 .header-inner { min-height:100%; display:flex; flex-direction:column; padding:32px 22px 20px; }
 .photo-open { display:block; cursor:zoom-in; }
-.profile-photo { width:124px; height:148px; object-fit:cover; object-position:center 42%; border-radius:60px 60px 24px 24px; display:block; margin:0 auto 20px; box-shadow:0 12px 30px #16243c14; }
+.profile-photo { width:176px; max-width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; object-position:center 42%; border-radius:80px 80px 28px 28px; display:block; margin:0 auto 20px; box-shadow:0 12px 30px #16243c14; }
 .sidebar-identity { text-align:center; }
 .brand { font-size:1.35rem; font-weight:750; letter-spacing:-.04em; }
 .sidebar-identity p { font-size:.82rem; margin:6px 0 2px; }
@@ -148,7 +148,7 @@ footer { display:flex; flex-wrap:wrap; align-items:center; gap:16px; justify-con
  nav { width:100%; flex-direction:row; flex-wrap:wrap; border:0; padding:0; }
  .nav-ready nav { display:none; } .nav-ready.nav-open nav { display:flex; }
  .nav-open .photo-open { display:block; order:5; width:100%; }
- .nav-open .profile-photo { width:80px; height:96px; margin:0 auto 8px; }
+ .nav-open .profile-photo { width:140px; height:175px; margin:0 auto 8px; }
  .wrap { margin-left:0; padding:28px 5% 16px; }
  .hero { gap:18px; }
  .bento-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
