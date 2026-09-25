@@ -64,12 +64,15 @@
   let frame = 0;
   function updateNavigation() {
     frame = 0;
-    const headerHeight = header.getBoundingClientRect().height;
+    const headerHeight = window.matchMedia('(max-width: 800px)').matches ? header.getBoundingClientRect().height : 0;
     document.documentElement.style.setProperty('--header-offset', `${headerHeight + 24}px`);
     const readingLine = Math.min(headerHeight + 48, window.innerHeight * .5);
     let current = -1;
+    let nearest = -Infinity;
     sections.forEach((section, index) => {
-      if (section && section.getBoundingClientRect().top <= readingLine) current = index;
+      if (!section) return;
+      const top = section.getBoundingClientRect().top;
+      if (top <= readingLine && top > nearest) { current = index; nearest = top; }
     });
     if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = sections.length - 1;
     links.forEach((link, index) => {

@@ -1,15 +1,15 @@
 (() => {
   const root = document.documentElement;
-  let theme = 'dark';
+  let theme = 'light';
   try {
-    const saved = localStorage.getItem('portfolio-theme');
+    const saved = localStorage.getItem('portfolio-theme-v2');
     if (saved === 'light' || saved === 'dark') theme = saved;
   } catch { /* The toggle still works when browser storage is unavailable. */ }
 
   const applyTheme = () => {
     root.dataset.theme = theme;
     document.querySelector('meta[name="theme-color"]').content =
-      theme === 'dark' ? '#0b1325' : '#f7f9f4';
+      theme === 'dark' ? '#101a2b' : '#f5f5f0';
   };
   applyTheme();
 
@@ -27,7 +27,7 @@
       theme = theme === 'dark' ? 'light' : 'dark';
       applyTheme();
       updateButton();
-      try { localStorage.setItem('portfolio-theme', theme); } catch { /* Optional persistence. */ }
+      try { localStorage.setItem('portfolio-theme-v2', theme); } catch { /* Optional persistence. */ }
     });
   });
 })();
