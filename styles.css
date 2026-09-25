@@ -124,16 +124,37 @@ footer { display:flex; flex-wrap:wrap; align-items:center; gap:16px; justify-con
 .welcome-content h1 { font-size:clamp(3rem,9vw,7rem); margin:24px 0; }
 .welcome-description { max-width:460px; margin:0 auto 32px; }
 .welcome-caption { font-size:.85rem; margin-top:28px; }
-@keyframes enter-up { from { opacity:0; translate:0 12px; } to { opacity:1; translate:0 0; } }
+@keyframes enter-up { from { opacity:0; translate:0 24px; } to { opacity:1; translate:0 0; } }
+@keyframes photo-enter { from { opacity:0; transform:scale(.96); } to { opacity:1; transform:scale(1); } }
 @keyframes drift { to { transform:translate(12vw,10vh); } }
 @media (prefers-reduced-motion:no-preference) {
- .portfolio-entering .wrap { animation:enter-up .6s ease both; }
- .reveal-in { animation:enter-up .6s ease backwards; }
+ body,.header,.panel,.tool-strip,.email-card,.button,.theme-toggle,.copy-email,nav a,.toolkit-list li { transition:background-color .35s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease,transform .25s ease; }
+ .portfolio-entering .hero { animation:enter-up .7s cubic-bezier(.2,.7,.2,1) both; }
+ .portfolio-entering .header-inner { animation:enter-up .55s ease both; }
+ .welcome-content>.eyebrow,.welcome-content>h1,.welcome-role,.welcome-description,.enter-portfolio,.welcome-caption { animation:enter-up .7s cubic-bezier(.2,.7,.2,1) backwards; }
+ .welcome-content>h1 { animation-delay:.08s; }
+ .welcome-role,.welcome-description { animation-delay:.16s; }
+ .enter-portfolio,.welcome-caption { animation-delay:.24s; }
+ .reveal-in { animation:enter-up .65s cubic-bezier(.2,.7,.2,1) backwards; animation-delay:var(--reveal-delay,0ms); }
+ .photo-dialog[open] { animation:photo-enter .25s ease both; }
+ .profile-photo { transition:transform .35s ease,box-shadow .35s ease; }
+ .button>span,.theme-icon,.icon-tile { transition:transform .25s ease; }
+ .button:active,.theme-toggle:active,.copy-email:active { transform:scale(.97); }
+ .nav-open nav { animation:enter-up .25s ease backwards; }
  .toolkit-list.reveal-in { animation:none; }
  .toolkit-list.reveal-in li { animation:enter-up .6s ease backwards; animation-delay:var(--tag-delay,0ms); }
  .glow-blue { animation:drift 24s ease-in-out infinite alternate; }
  .glow-teal { animation:drift 30s ease-in-out infinite alternate-reverse; }
  .pointer-active .dot-response { opacity:1; }
+}
+@media (prefers-reduced-motion:no-preference) and (hover:hover) and (pointer:fine) {
+ .panel:hover { transform:translateY(-3px); border-color:var(--accent); box-shadow:0 12px 26px #16243c12; }
+ .panel:hover .icon-tile { transform:rotate(-6deg); }
+ .button:hover,.theme-toggle:hover,.copy-email:hover { transform:translateY(-3px); }
+ .button:hover>span { transform:translate(2px,-2px); }
+ .theme-toggle:hover .theme-icon { transform:rotate(-18deg); }
+ .photo-open:hover .profile-photo { transform:scale(1.035); box-shadow:0 16px 32px #16243c25; }
+ .toolkit-list li:hover { transform:translateY(-3px); border-color:var(--accent); background:var(--soft); }
 }
 .motion-paused .ambient-glow,.welcome-pending .ambient-glow { animation-play-state:paused; }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .dot-response { display:none; } }
