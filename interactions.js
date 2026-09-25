@@ -61,6 +61,25 @@
   }
   const links = [...document.querySelectorAll('nav a[href^="#"]')];
   const sections = links.map((link) => document.querySelector(link.getAttribute('href')));
+  // Cards can share a row, so scroll position alone cannot identify a clicked card.
+  let selectedSection = null;
+  document.addEventListener('click', (event) => {
+    const anchor = event.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const index = links.findIndex((link) => link.hash === anchor.hash);
+    selectedSection = index >= 0 ? index : null;
+    scheduleUpdate();
+  });
+  function resumeScrollTracking() { selectedSection = null; scheduleUpdate(); }
+  window.addEventListener('wheel', resumeScrollTracking, { passive: true });
+  window.addEventListener('touchmove', resumeScrollTracking, { passive: true });
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(event.key)) resumeScrollTracking();
+  });
+  // Dragging the scrollbar also returns control to scroll tracking.
+  window.addEventListener('pointerdown', (event) => {
+    if (event.clientX >= document.documentElement.clientWidth) resumeScrollTracking();
+  });
   let frame = 0;
   function updateNavigation() {
     frame = 0;
@@ -75,6 +94,7 @@
       if (top <= readingLine && top > nearest) { current = index; nearest = top; }
     });
     if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = sections.length - 1;
+    if (selectedSection !== null) current = selectedSection;
     links.forEach((link, index) => {
       if (index === current) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
