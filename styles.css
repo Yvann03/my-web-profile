@@ -33,7 +33,8 @@ h3 { font-size:1.25rem; letter-spacing:-.025em; }
 .sidebar-socials a:hover,.theme-toggle:hover { background:var(--soft); }
 nav { display:flex; flex-direction:column; gap:5px; padding-top:20px; border-top:1px solid var(--border); }
 nav a { min-height:44px; display:flex; align-items:center; gap:12px; padding:10px 12px; font-size:.875rem; border-radius:8px; color:var(--muted); }
-nav a:hover,nav a[aria-current="location"] { background:var(--soft); color:var(--text); }
+nav a:hover { color:var(--text); }
+nav a[aria-current="location"] { background:var(--soft); color:var(--text); }
 nav a[aria-current="location"] { box-shadow:inset 3px 0 var(--orange); font-weight:650; }
 .sidebar-note { margin:auto 0 0; padding-top:32px; font-size:.75rem; }
 .sidebar-note span { font-size:.75rem; }

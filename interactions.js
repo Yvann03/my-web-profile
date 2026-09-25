@@ -63,11 +63,13 @@
   const sections = links.map((link) => document.querySelector(link.getAttribute('href')));
   // Cards can share a row, so scroll position alone cannot identify a clicked card.
   let selectedSection = null;
+  let preferredSection = null;
   document.addEventListener('click', (event) => {
     const anchor = event.target.closest('a[href^="#"]');
     if (!anchor) return;
     const index = links.findIndex((link) => link.hash === anchor.hash);
     selectedSection = index >= 0 ? index : null;
+    preferredSection = selectedSection;
     scheduleUpdate();
   });
   function resumeScrollTracking() { selectedSection = null; scheduleUpdate(); }
@@ -93,6 +95,11 @@
       const top = section.getBoundingClientRect().top;
       if (top <= readingLine && top > nearest) { current = index; nearest = top; }
     });
+    // Keep the user's choice when multiple cards occupy the same grid row.
+    if (current >= 0 && preferredSection !== null &&
+        Math.abs(sections[preferredSection].getBoundingClientRect().top - nearest) < 2) {
+      current = preferredSection;
+    }
     if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = sections.length - 1;
     if (selectedSection !== null) current = selectedSection;
     links.forEach((link, index) => {
